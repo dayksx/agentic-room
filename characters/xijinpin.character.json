@@ -6,7 +6,7 @@
   "modelProvider": "openai",
   "settings": {
     "secrets": {
-      "EVM_PUBLIC_KEY=": "0x2B52e3A8bBdE66262E10f15578769ACd4812249d"
+      "EVM_PUBLIC_KEY": "0x2B52e3A8bBdE66262E10f15578769ACd4812249d"
     },
     "chains": {
       "evm": [
