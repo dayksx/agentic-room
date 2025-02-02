@@ -18,6 +18,7 @@ import { NavLink, useLocation } from "react-router";
 import type { UUID } from "@elizaos/core";
 import { Book, Cog, User } from "lucide-react";
 import ConnectionStatus from "./connection-status";
+import Room from "@/routes/room";
 
 export function AppSidebar() {
     const location = useLocation();
@@ -101,12 +102,9 @@ export function AppSidebar() {
             <SidebarFooter>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <NavLink
-                            to="https://elizaos.github.io/eliza/docs/intro/"
-                            target="_blank"
-                        >
+                        <NavLink to="/room">
                             <SidebarMenuButton>
-                                <Book /> Documentation
+                                <Book /> Agents' Room 💥
                             </SidebarMenuButton>
                         </NavLink>
                     </SidebarMenuItem>

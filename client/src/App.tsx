@@ -9,6 +9,7 @@ import Chat from "./routes/chat";
 import Overview from "./routes/overview";
 import Home from "./routes/home";
 import useVersion from "./hooks/use-version";
+import Room from "./routes/room";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -43,6 +44,10 @@ function App() {
                                         <Route
                                             path="settings/:agentId"
                                             element={<Overview />}
+                                        />
+                                        <Route
+                                            path="room/"
+                                            element={<Room />}
                                         />
                                     </Routes>
                                 </div>

@@ -1,0 +1,46 @@
+/* AgentList.css */
+.agent-list {
+  width: 20%;
+  background-color: #1D1D1D; /* Updated background color */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Ensure text is readable on dark background */
+}
+
+.agent-list h2 {
+  margin-top: 0;
+}
+
+.agent-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agent-card {
+  display: flex;
+  align-items: center;
+  background-color: #292929; /* Dark background for cards */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  color: #ffffff; /* Ensure text is readable on dark background */
+}
+
+.agent-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.agent-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.agent-info p {
+  margin: 0;
+  color: #cccccc; /* Lighter text color for better readability */
+}
