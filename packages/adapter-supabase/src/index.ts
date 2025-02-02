@@ -399,35 +399,82 @@ export class SupabaseDatabaseAdapter extends DatabaseAdapter {
         tableName: string,
         unique = false
     ): Promise<void> {
-        const createdAt = memory.createdAt ?? Date.now();
-        if (unique) {
-            const opts = {
-                // TODO: Add ID option, optionally
-                query_table_name: tableName,
-                query_userId: memory.userId,
-                query_content: memory.content.text,
-                query_roomId: memory.roomId,
-                query_embedding: memory.embedding,
-                query_createdAt: createdAt,
-                similarity_threshold: 0.95,
-            };
-
-            const result = await this.supabase.rpc(
-                "check_similarity_and_insert",
-                opts
-            );
-
-            if (result.error) {
-                throw new Error(JSON.stringify(result.error));
+        try {
+            const createdAt = memory.createdAt ?? Date.now();
+            
+            // Validate required fields
+            if (!memory.roomId || !memory.content || !tableName) {
+                throw new Error(`Missing required fields: ${JSON.stringify({
+                    roomId: memory.roomId,
+                    content: !!memory.content,
+                    tableName
+                })}`);
             }
-        } else {
-            const result = await this.supabase
-                .from("memories")
-                .insert({ ...memory, createdAt, type: tableName });
-            const { error } = result;
-            if (error) {
-                throw new Error(JSON.stringify(error));
+
+            if (unique) {
+                const opts = {
+                    query_table_name: tableName,
+                    query_userId: memory.userId,
+                    query_content: memory.content.text,
+                    query_roomId: memory.roomId,
+                    query_embedding: memory.embedding,
+                    query_createdAt: createdAt,
+                    similarity_threshold: 0.95,
+                };
+
+                const result = await this.supabase.rpc(
+                    "check_similarity_and_insert",
+                    opts
+                );
+
+                if (result.error) {
+                    elizaLogger.error('Error in check_similarity_and_insert:', result.error);
+                    throw new Error(JSON.stringify(result.error));
+                }
+            } else {
+                // Prepare the memory object, ensuring all fields are in correct format
+                const memoryToInsert = {
+                    ...memory,
+                    id: memory.id || uuid(),
+                    createdAt,
+                    type: tableName,
+                    embedding: memory.embedding ? Array.from(memory.embedding) : null,
+                    content: typeof memory.content === 'string' 
+                        ? { text: memory.content } 
+                        : memory.content
+                };
+
+                elizaLogger.debug('Attempting to insert memory:', {
+                    tableName,
+                    memoryId: memoryToInsert.id,
+                    roomId: memoryToInsert.roomId
+                });
+
+                const result = await this.supabase
+                    .from(tableName)
+                    .insert(memoryToInsert);
+                
+                if (result.error) {
+                    elizaLogger.error('Error inserting memory:', {
+                        error: result.error,
+                        tableName,
+                        memoryId: memoryToInsert.id
+                    });
+                    throw new Error(JSON.stringify(result.error));
+                }
+
+                elizaLogger.debug('Successfully inserted memory:', {
+                    tableName,
+                    memoryId: memoryToInsert.id
+                });
             }
+        } catch (error) {
+            elizaLogger.error('Unexpected error in createMemory:', {
+                error: error instanceof Error ? error.message : error,
+                tableName,
+                memoryId: memory.id
+            });
+            throw error;
         }
     }
 
