@@ -8,6 +8,9 @@ export const defaultCharacter: Character = {
     modelProvider: ModelProviderName.OPENAI,
     settings: {
         secrets: {},
+        chains: {
+            evm: ["lineaSepolia"],
+        },
         voice: {
             model: "en_US-hfc_female-medium",
         },

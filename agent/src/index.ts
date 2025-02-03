@@ -7,6 +7,7 @@ import { SupabaseDatabaseAdapter } from "@elizaos/adapter-supabase";
 import { TelegramClientInterface } from "@elizaos/client-telegram";
 import { DirectClient } from "@elizaos/client-direct";
 import { onchainJson } from "@elizaos/plugin-iq6900";
+import { evmPlugin } from "@elizaos/plugin-evm";
 import {
     AgentRuntime,
     CacheManager,
@@ -659,7 +660,7 @@ export async function createAgent(
         evaluators: [],
         character,
         // character.plugins are handled when clients are added
-        plugins: [],
+        plugins: [evmPlugin],
         providers: [],
         managers: [],
         cacheManager: cache,
