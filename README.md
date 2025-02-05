@@ -1,10 +1,8 @@
-# Eliza 🤖
+# WagmAI 🤖
 
 <div align="center">
-  <img src="https://ethglobal.b-cdn.net/events/agents/square-logo/default.png" alt="ETH Global Agentic Ethereum" width="100%" />
+  <img src="https://ethglobal.b-cdn.net/events/agents/square-logo/default.png" alt="ETH Global Agentic Ethereum" width="2%" /> <i>ETH Global Hackathon, Agentic Ethereum<i />
 </div>
-
-<div align="center">
 
 ## 🚩 Overview
 
