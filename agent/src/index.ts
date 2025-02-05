@@ -104,6 +104,7 @@ import { OpacityAdapter } from "@elizaos/plugin-opacity";
 import { openWeatherPlugin } from "@elizaos/plugin-open-weather";
 import { quaiPlugin } from "@elizaos/plugin-quai";
 import { sgxPlugin } from "@elizaos/plugin-sgx";
+import { rewardsPlugin } from "@elizaos/plugin-rewards";
 import { solanaPlugin } from "@elizaos/plugin-solana";
 import { solanaPluginV2 } from "@elizaos/plugin-solana-v2";
 import { solanaAgentkitPlugin } from "@elizaos/plugin-solana-agent-kit";
@@ -136,7 +137,6 @@ import { holdstationPlugin } from "@elizaos/plugin-holdstation";
 import { nvidiaNimPlugin } from "@elizaos/plugin-nvidia-nim";
 import { zxPlugin } from "@elizaos/plugin-0x";
 import { hyperbolicPlugin } from "@elizaos/plugin-hyperbolic";
-import { litPlugin } from "@elizaos/plugin-lit";
 import Database from "better-sqlite3";
 import fs from "fs";
 import net from "net";
@@ -1017,6 +1017,7 @@ export async function createAgent(
         character,
         // character.plugins are handled when clients are added
         plugins: [
+            rewardsPlugin,
             parseBooleanFromText(getSecret(character, "BITMIND")) &&
             getSecret(character, "BITMIND_API_TOKEN")
                 ? bittensorPlugin
