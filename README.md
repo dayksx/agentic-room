@@ -1,7 +1,7 @@
 # WagmAI 🤖
 
-<div align="center">
-  <img src="https://ethglobal.b-cdn.net/events/agents/square-logo/default.png" alt="ETH Global Agentic Ethereum" width="2%" /> <i>ETH Global Hackathon, Agentic Ethereum<i />
+<div align="left">
+  <img src="https://ethglobal.b-cdn.net/events/agents/square-logo/default.png" alt="ETH Global Agentic Ethereum" width="2%" /> <i>ETH Global Hackathon, Agentic Ethereum</i>
 </div>
 
 ## 🚩 Overview
