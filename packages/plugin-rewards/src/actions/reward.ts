@@ -4,7 +4,8 @@ import type {
   Memory,
   Action,
 } from "@elizaos/core";
-import { ethers } from "ethers";
+
+import * as ethers from "ethers";
 
 // Define the contract ABI and address
 const wagmiTokenAbi = [
