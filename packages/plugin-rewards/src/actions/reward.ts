@@ -3,6 +3,8 @@ import type {
   IAgentRuntime,
   Memory,
   Action,
+  State,
+  HandlerCallback,
 } from "@elizaos/core";
 
 import * as ethers from "ethers";
@@ -29,10 +31,13 @@ export const rewardAction: Action = {
   description: "Reward a user with 10 $WAGMI tokens if their post contains the #WagmAI hashtag.",
   handler: async (
       _runtime: IAgentRuntime,
-      _message: Memory
+      _message: Memory,
+      state: State,
+      _options: { [key: string]: unknown },
+      callback?: HandlerCallback
   ): Promise<boolean> => {
         console.log(">>> reward handling");
-      const { userId, content } = _message;
+      const { content } = _message;
       const { text } = content;
       const tmpRewardAddress = '0x224b11F0747c7688a10aCC15F785354aA6493ED6';
 
@@ -59,6 +64,15 @@ export const rewardAction: Action = {
               await tx.wait();
 
               console.log(`Rewarded ${tmpRewardAddress} with 10 $WAGMI tokens.`);
+              if (callback) {
+                callback({
+                    text: `Here we go, you got rewarded for your publication 🎉 10 $WAGMAI tokens directly on your address ${tmpRewardAddress}, check it out: https://sepolia.arbiscan.io/tx/${tx.hash}`,
+                    content: {
+                        success: true,
+                        recipient: tmpRewardAddress,
+                    },
+                });
+            }
               return true;
           } catch (error) {
               console.error("Error rewarding user:", error);
