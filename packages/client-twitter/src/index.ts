@@ -61,20 +61,15 @@ export const TwitterClientInterface: Client = {
         await manager.client.init();
 
         // Start the posting loop
-        await manager.post.start();
+     //   await manager.post.start();
 
         // Start the search logic if it exists
-        if (manager.search) {
-            await manager.search.start();
-        }
+        // if (manager.search) {
+        //     await manager.search.start();
+        // }
 
         // Start interactions (mentions, replies)
         await manager.interaction.start();
-
-        // If Spaces are enabled, start the periodic check
-        if (manager.space) {
-            manager.space.startPeriodicSpaceCheck();
-        }
 
         return manager;
     },

@@ -1,4 +1,5 @@
 import type { Plugin } from "@elizaos/core";
+import { TwitterClientInterface } from "@elizaos/client-twitter";
 import { rewardAction } from "./actions/reward.ts";
 
 export * as actions from "./actions/index.ts";
@@ -9,6 +10,7 @@ export const rewardsPlugin: Plugin = {
     actions: [
         rewardAction
     ],
+    clients: [TwitterClientInterface],
     evaluators: [],
     providers: [],
 };

@@ -19,8 +19,15 @@
 		"dist"
 	],
 	"dependencies": {
+		"@cliqz/adblocker-playwright": "1.34.0",
+		"@elizaos/client-twitter": "workspace:*",
 		"@elizaos/core": "workspace:*",
-		"tsup": "8.3.5"
+		"@privy-io/server-auth": "^1.18.7",
+		"capsolver-npm": "2.0.2",
+		"dotenv": "^16.4.7",
+		"playwright": "1.48.2",
+		"tsup": "8.3.5",
+		"viem": "link:@privy-io/server-auth/viem"
 	},
 	"scripts": {
 		"build": "tsup --format esm --dts",

@@ -426,6 +426,11 @@ export class AgentRuntime implements IAgentRuntime {
             plugin.providers?.forEach((provider) => {
                 this.registerContextProvider(provider);
             });
+
+            plugin.clients?.forEach((client) => {
+                client.start(this)
+            })
+
         });
 
         (opts.actions ?? []).forEach((action) => {
